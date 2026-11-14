@@ -18,13 +18,13 @@
 | 테스트 기기 | Pixel 5 에뮬레이터 (1080 x 2340 px, 440 dpi), Android 17.0 (API 37) |
 | 연동 테스트용 차량 에뮬레이터 | Pleos Connect v2.1.0 APIs (Android 14, API 34), 화면 규격 2560 x 1440 px, 160 dpi |
 | 개발 환경 | Android Studio Rabbit 2 (2026.2.2 Patch 1), Kotlin 2.0.20, AGP 8.5.2, minSdk 28 |
-| APK | `apk/夏秋핑_가보자요_phone-release.apk` |
+| APK | `apk/夏秋핑_가보자요폰_release.apk` |
 
 ## 5분 만에 둘러보기
 
 1. 폰 에뮬레이터에 APK를 설치한다.
    ```bash
-   adb install -r apk/夏秋핑_가보자요_phone-release.apk
+   adb install -r apk/夏秋핑_가보자요폰_release.apk
    ```
 2. 앱을 열고 시작 버튼을 누르면 소개 4장이 나온 뒤 홈으로 간다. 계정 없이 바로 쓴다. 위치 권한을 허용하면 현재 지역의 날씨와 추천이 나온다.
 3. **내 정보**에서 **+ 아이 추가**로 아이를 등록하고 취향(동물, 곤충, 물놀이 등)을 고른다. 홈의 추천이 아이 취향으로 바뀐다.
