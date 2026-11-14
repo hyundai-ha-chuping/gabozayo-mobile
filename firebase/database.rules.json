@@ -1,0 +1,79 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "families": {
+      ".read": false,
+      ".write": false,
+      "$code": {
+        ".read": "$code.matches(/^[0-9]{6}$/)",
+        ".write": "$code.matches(/^[0-9]{6}$/)",
+
+        "owner": { ".validate": "newData.isString() && newData.val().length <= 64" },
+        "createdAt": { ".validate": "newData.isNumber()" },
+        "savedAt": { ".validate": "newData.isNumber()" },
+        "homeAt": { ".validate": "newData.isNumber()" },
+        "interestsAt": { ".validate": "newData.isNumber()" },
+        "carConnectedAt": { ".validate": "newData.isNumber()" },
+        "carBeat": { ".validate": "newData.isNumber()" },
+
+        "sendToCar": {
+          ".validate": "newData.hasChildren(['id', 'name', 'lat', 'lng', 'sentAt'])",
+          "id": { ".validate": "newData.isString() && newData.val().length <= 100" },
+          "name": { ".validate": "newData.isString() && newData.val().length <= 200" },
+          "address": { ".validate": "newData.isString() && newData.val().length <= 300" },
+          "lat": { ".validate": "newData.isNumber() && newData.val() >= -90 && newData.val() <= 90" },
+          "lng": { ".validate": "newData.isNumber() && newData.val() >= -180 && newData.val() <= 180" },
+          "route": { ".validate": "newData.isString() && newData.val().length <= 20" },
+          "sentAt": { ".validate": "newData.isNumber()" },
+          "$other": { ".validate": false }
+        },
+        "ack": {
+          ".validate": "newData.hasChildren(['id', 'ack'])",
+          "id": { ".validate": "newData.isString() && newData.val().length <= 100" },
+          "ack": { ".validate": "newData.isString() && newData.val().length <= 20" },
+          "message": { ".validate": "newData.isString() && newData.val().length <= 300" },
+          "ts": { ".validate": "newData.isNumber()" },
+          "etaSec": { ".validate": "newData.isNumber()" },
+          "distM": { ".validate": "newData.isNumber()" },
+          "$other": { ".validate": false }
+        },
+
+        "savedPlaces": { "$i": { ".validate": "$i.matches(/^[0-9]{1,3}$/) && newData.hasChildren(['id', 'name'])" } },
+        "recs": { "$i": { ".validate": "$i.matches(/^[0-9]{1,3}$/) && newData.hasChildren(['id', 'name'])" } },
+        "events": { "$i": { ".validate": "$i.matches(/^[0-9]{1,3}$/) && newData.hasChildren(['id', 'name'])" } },
+        "kids": { "$i": { ".validate": "$i.matches(/^[0-9]{1,2}$/) && newData.hasChildren(['name'])" } },
+        "interests": { "$i": { ".validate": "$i.matches(/^[0-9]{1,2}$/) && newData.hasChildren(['label'])" } },
+
+        "$other": { ".validate": false }
+      }
+    },
+    "stories": {
+      ".read": false,
+      ".write": false,
+      "$code": {
+        ".read": "$code.matches(/^[0-9]{6}$/)",
+        ".write": "$code.matches(/^[0-9]{6}$/)",
+        "$sid": {
+          ".validate": "$sid.matches(/^[0-9]{1,16}$/) && newData.hasChildren(['kind', 'title', 'body', 'date', 'by'])",
+          "kind": { ".validate": "newData.isString() && (newData.val() == '후기' || newData.val() == '질문' || newData.val() == '꿀팁')" },
+          "title": { ".validate": "newData.isString() && newData.val().length <= 60" },
+          "body": { ".validate": "newData.isString() && newData.val().length <= 1000" },
+          "date": { ".validate": "newData.isString() && newData.val().length <= 12" },
+          "by": { ".validate": "newData.isString() && newData.val().length <= 64" },
+          "like": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100000" },
+          "comments": {
+            "$cid": {
+              ".validate": "$cid.matches(/^[0-9]{1,16}$/) && newData.hasChildren(['text', 'date', 'by'])",
+              "text": { ".validate": "newData.isString() && newData.val().length <= 300" },
+              "date": { ".validate": "newData.isString() && newData.val().length <= 12" },
+              "by": { ".validate": "newData.isString() && newData.val().length <= 64" },
+              "$other": { ".validate": false }
+            }
+          },
+          "$other": { ".validate": false }
+        }
+      }
+    }
+  }
+}
